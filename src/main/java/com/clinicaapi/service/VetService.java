@@ -3,14 +3,12 @@ package com.clinicaapi.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Service;
 
 import com.clinicaapi.models.Vet;
 import com.clinicaapi.repository.VetRepository;
 
-@RestController
-@RequestMapping("/vets")
+@Service
 public class VetService {
 	@Autowired
 	private VetRepository vetRepository;

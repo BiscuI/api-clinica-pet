@@ -3,14 +3,12 @@ package com.clinicaapi.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Service;
 
 import com.clinicaapi.models.Consulta;
 import com.clinicaapi.repository.ConsultaRepository;
 
-@RestController
-@RequestMapping("/consultas")
+@Service
 public class ConsultaService {
 	
 	@Autowired
@@ -24,7 +22,7 @@ public class ConsultaService {
 		consultaRepository.save(consulta);
 	}
 	
-	public void deletarConsulta(Consulta consulta) {
-		consultaRepository.delete(consulta);
+	public void deletarConsulta(Integer id) {
+		consultaRepository.deleteById(id);;
 	}
 }

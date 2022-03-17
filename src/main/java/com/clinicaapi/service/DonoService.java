@@ -18,6 +18,10 @@ public class DonoService {
 		return donoRepository.findAll();
 	}
 	
+	public List<Dono> findByName(String nome) {
+		return donoRepository.findByNome(nome);
+	}
+	
 	public void addDono(Dono dono) {
 		donoRepository.save(dono);
 	}
