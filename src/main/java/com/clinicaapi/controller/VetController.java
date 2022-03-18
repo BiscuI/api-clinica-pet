@@ -16,18 +16,18 @@ import com.clinicaapi.models.Vet;
 import com.clinicaapi.service.VetService;
 
 @RestController
-@RequestMapping("/vets")
+@RequestMapping("/api")
 public class VetController {
 	@Autowired
 	public VetService vetService;
 	
-	@GetMapping
-	public ResponseEntity<List<Vet>> findAll(){
+	@GetMapping("/vets/buscar")
+	public ResponseEntity<List<Vet>> BuscarTodos(){
 		List<Vet> list = vetService.findAll();
 		return ResponseEntity.ok().body(list);
 	}
 	
-	@PostMapping
+	@PostMapping("/vets/cadastrar")
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<Vet> cadastrarVet(@RequestBody Vet vet) {
 		vetService.addVet(vet);

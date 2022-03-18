@@ -19,31 +19,31 @@ import com.clinicaapi.models.Consulta;
 import com.clinicaapi.service.ConsultaService;
 
 @RestController
-@RequestMapping("/consultas")
+@RequestMapping("/api")
 public class ConsultaController {
 	@Autowired
 	private ConsultaService consultaService;
 	
-	@GetMapping
-	public ResponseEntity<List<Consulta>> findAll(){
+	@GetMapping("/consultas/buscar")
+	public ResponseEntity<List<Consulta>> buscarTodas(){
 		List<Consulta> list = consultaService.findAll();
 		return ResponseEntity.ok().body(list);
 	}
 	
-	@PostMapping
+	@PostMapping("/consultas/cadastrar")
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<Consulta> cadastrarConsulta(@RequestBody Consulta consulta) {
 		consultaService.addConsulta(consulta);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
-	@DeleteMapping(value = "/{id}")
+	@DeleteMapping("/consultas/deletar")
 	public ResponseEntity<Consulta> deletarConsulta(@PathVariable Integer id) {
 		consultaService.deletarConsulta(id);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
-	@PutMapping
+	@PutMapping("/consultas/atualizar")
 	public ResponseEntity<Consulta> atualizarConsulta(@RequestBody Consulta consulta) {
 		consultaService.addConsulta(consulta);
 		return new ResponseEntity<>(HttpStatus.OK);

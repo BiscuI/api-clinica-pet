@@ -17,7 +17,7 @@ import com.clinicaapi.models.Dono;
 import com.clinicaapi.service.DonoService;
 
 @RestController
-@RequestMapping("/donos")
+@RequestMapping("/api")
 public class DonoController {
 	@Autowired
 	private DonoService donoService;
@@ -26,17 +26,17 @@ public class DonoController {
 		this.donoService = service;
 	}
 	
-	@GetMapping
-	public ResponseEntity<List<Dono>> findAll(){
+	@GetMapping("/donos/buscar")
+	public ResponseEntity<List<Dono>> buscarTodas(){
 		return ResponseEntity.ok().body(donoService.findAll());
 	}
 	
-	@GetMapping(value = "/{nome}")
-	public ResponseEntity<List<Dono>> findByName(@PathVariable String nome){
+	@GetMapping("/donos/buscar/{nome}")
+	public ResponseEntity<List<Dono>> buscarPorNome(@PathVariable String nome){
 		return ResponseEntity.ok().body(donoService.findByName(nome));
 	}
 	
-	@PostMapping
+	@PostMapping("/donos/cadastrar")
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<Dono> cadastrarCliente(@RequestBody Dono cliente) {
 		donoService.addDono(cliente);

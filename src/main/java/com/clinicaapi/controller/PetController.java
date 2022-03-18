@@ -17,25 +17,25 @@ import com.clinicaapi.models.Pet;
 import com.clinicaapi.service.PetService;
 
 @RestController
-@RequestMapping("/pets")
+@RequestMapping("/api")
 public class PetController {
 	@Autowired
 	private PetService petService;
 	
-	@GetMapping
-	public ResponseEntity<List<Pet>> findAll(){
+	@GetMapping("/pets/buscar")
+	public ResponseEntity<List<Pet>> BuscarTodos(){
 		List<Pet> list = petService.findAll();
 		return ResponseEntity.ok().body(list);
 	}
 	
-	@PostMapping
+	@PostMapping("/pets/cadastrar")
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<Pet> cadastrarPet(@RequestBody Pet pet) {
 		petService.addPet(pet);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
-	@PutMapping
+	@PutMapping("/pets/atualizar")
 	public ResponseEntity<Pet> atualizarPet(@RequestBody Pet pet) {
 		petService.addPet(pet);
 		return new ResponseEntity<>(HttpStatus.OK);
